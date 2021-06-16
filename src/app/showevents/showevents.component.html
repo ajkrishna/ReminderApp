@@ -1,0 +1,14 @@
+<div class="d-grid gap-2">
+    <button (click)="display()" class="btn" type="button">Display Events</button>
+  </div>
+<div *ngIf="isShown" class="show"><table><tr>
+    <div class="row g-2 align-items-center check">
+        <th>
+            <label for="evdate" class="col-form-label">Date</label>
+        </th>
+        <th>
+            <label for="evdesc" class="col-form-label">Event</label>
+        </th>
+      
+       <tbody>{{val}}
+    </tbody></div></tr></table></div>

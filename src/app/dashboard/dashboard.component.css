@@ -1,0 +1,12 @@
+body{
+    background-color: blue;
+}
+.btnSubmit
+{
+    width:50%;
+    
+}
+.error{
+    color: rgb(243, 10, 10);
+    margin-left: 7px;
+}

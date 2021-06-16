@@ -1,0 +1,32 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form" >
+            <h3>Login Form</h3>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group">
+                    <input type="text" id="uid" class="form-control" formControlName="uid" name="uid"  placeholder="User ID" value="" />
+                    <div *ngIf="(this.loginForm.get('uid')?.touched||this.loginForm.get('uid')?.dirty)&&
+                    this.loginForm.get('uid')?.errors" class="error">Invalid Account No</div>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="pswd" class="form-control" formControlName="pswd" name="pswd" placeholder="Password" value="" />
+                    <div *ngIf="(this.loginForm.get('pswd')?.touched||this.loginForm.get('pswd')?.dirty)&&
+                    this.loginForm.get('pswd')?.errors" class="error">Invalid Password</div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="Login" />
+                </div>
+                <div class="form-group">
+                    <a href="#" class="ForgetPwd" value="fgtpwd">Forget Password?</a>
+                </div><br>
+                <div class="d-grid gap-2">
+                    <button routerLink="register" class="btn" type="button">CREATE NEW ACCOUNT</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+</div>
+

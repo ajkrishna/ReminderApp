@@ -1,0 +1,31 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form" >
+            <h3>Welcome {{user}} </h3>
+            <form [formGroup]="saveForm" (ngSubmit)="saveve()">
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="evedate" name="evedate" placeholder="Date" 
+                    value="" />
+                    <div *ngIf="(this.saveForm.get('evedate')?.touched||this.saveForm.get('evedate')?.dirty)&&
+                    this.saveForm.get('evedate')?.errors" class="error">Enter Date</div>
+                </div>
+                <div class="form-group" >
+                    <input type="text" class="form-control" formControlName="evedesc" 
+                    name="evedesc" placeholder="Event" value="" />
+                    <div *ngIf="(this.saveForm.get('evedesc')?.touched||this.saveForm.get('evedesc')?.dirty)&&
+                    this.saveForm.get('evedesc')?.errors" class="error">Enter event</div>
+                </div>
+                <div class="form-group ">
+                   <input type="submit" class="btnSubmit" value="Save" /><br><br><br>
+                   <div class="d-grid gap-2">
+                    <button (click)="showevents()" class="btn" type="button">Display Events</button>
+                  </div>
+                </div>
+                
+              </form>
+    </div>
+</div>
+
