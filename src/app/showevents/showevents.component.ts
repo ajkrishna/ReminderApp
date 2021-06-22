@@ -9,13 +9,17 @@ import { DataService } from '../service/data.service';
 })
 export class ShoweventsComponent implements OnInit {
    val:string | undefined ;
+   //i: number | undefined;
+   uID=this.dataservice.uID;
+  evdate: any;
+  evdesc: any;
   constructor(private router:Router,private dataservice:DataService) { }
   isShown: boolean = false ; 
   ngOnInit(): void {
    
   }
  
-  display()
+  /*display()
   {
     this.isShown = ! this.isShown;
     //this.dataservice.display();
@@ -27,15 +31,29 @@ export class ShoweventsComponent implements OnInit {
       let len=users[uID].events.length;
      // console.log(len);console.log(users[uID].events);
       for(let i=0;i<len;i++)
-      {
-        this.val+= users[uID]["events"][i]["evedate"] + ' ' + users[uID]["events"][i]["evedesc"]+
-        JSON.stringify(`<tr>`);
-      // this.val+=`${users[uID]["events"][i]["evedate"]}
-        //${users[uID]["events"][i]["evedesc"]}<br/>`
-       }
-       //let element = <HTMLInputElement>document.getElementById("result");
-       //element.innerText = val ;  
+        this.val+= users[uID]["events"][i]["evedate"] + ' ' + users[uID]["events"][i]["evedesc"]
   }
-  
+  }*/
+
+  display()
+  {
+    this.isShown = ! this.isShown;
+    if(this.isShown){
+    
+    this.dataservice.display(this.uID)
+    .subscribe((result:any)=>{
+      if(result){
+       // alert(result.message);
+        //console.log(result.event_date);
+       // console.log(result.event_desc);
+        this.evdate=result.event_date;
+        this.evdesc=result.event_desc;
+      }
+     },
+     (result)=>{
+       alert(result.error.message)
+       
+     })
+  }
 }
 }

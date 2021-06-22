@@ -1,14 +1,32 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<div class="container">
+    <div class="row">
 <div class="d-grid gap-2">
-    <button (click)="display()" class="btn" type="button">Display Events</button>
+    <button (click)="display()" class="btn btn-secondary" type="button">Display Events</button>
   </div>
-<div *ngIf="isShown" class="show"><table><tr>
-    <div class="row g-2 align-items-center check">
-        <th>
-            <label for="evdate" class="col-form-label">Date</label>
-        </th>
-        <th>
-            <label for="evdesc" class="col-form-label">Event</label>
-        </th>
-      
-       <tbody>{{val}}
-    </tbody></div></tr></table></div>
+<div *ngIf="isShown" class="show">
+    <div class="table-responsive">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Sl No.</th>
+            <th scope="col">Date</th>
+            <th scope="col">Event</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor ="let res of evdate;let i=index;">
+            <th scope="row">{{i+1}}</th>
+            <td>{{res}}</td>
+            <td>{{evdesc[i]}}</td><td><button  class="btn btn-secondary" type="button">Edit</button>&nbsp;&nbsp;
+                <button  class="btn btn-secondary" type="button">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div></div>
+</div></div>

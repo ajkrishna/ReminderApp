@@ -7,7 +7,7 @@
             <h3>Welcome {{user}} </h3>
             <form [formGroup]="saveForm" (ngSubmit)="saveve()">
                 <div class="form-group">
-                    <input type="text" class="form-control" formControlName="evedate" name="evedate" placeholder="Date" 
+                    <input type="date" class="form-control" formControlName="evedate" name="evedate" placeholder="Date" 
                     value="" />
                     <div *ngIf="(this.saveForm.get('evedate')?.touched||this.saveForm.get('evedate')?.dirty)&&
                     this.saveForm.get('evedate')?.errors" class="error">Enter Date</div>

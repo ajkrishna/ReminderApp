@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 import { DataService } from '../service/data.service';
 
 @Component({
@@ -10,9 +11,9 @@ import { DataService } from '../service/data.service';
 })
 export class DashboardComponent implements OnInit {
   
-  user=this.dataservice.currentUser;
+  user=this.dataservice.username;
   saveForm=this.fb.group({
-    evedate:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    evedate:['',[Validators.required]],
     evedesc:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
   })
 
@@ -27,17 +28,31 @@ export class DashboardComponent implements OnInit {
     {
     var evedate=this.saveForm.value.evedate;
     var evedesc=this.saveForm.value.evedesc;
-    const res=this.dataservice.saveve(evedate,evedesc);
-    if(res)
-    alert("Saved Successfully");
-    else
-    alert("Try Again...")
+    this.dataservice.saveve(evedate,evedesc)
+    .subscribe((result:any)=>{
+      if(result){
+        alert(result.message);
+      }
+     },
+     (result)=>{
+       alert(result.error.message)
+       
+     })
     }
+    /*if(this.currentID){
+    let user=this.accountDetails;
+    let uID=this.currentID;
+    user[uID].events.push({
+      evedate:edate,evedesc:edesc
+    })
+    return true;
+    }
+    else
+    return false;
+  }*/
   }
   showevents()
   {
-    this.router.navigateByUrl("showevents");
-    
+    this.router.navigateByUrl("showevents"); 
   }
-
 }
