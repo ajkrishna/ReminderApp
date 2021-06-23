@@ -10,7 +10,7 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  
+   i=1;
   user=this.dataservice.username;
   saveForm=this.fb.group({
     evedate:['',[Validators.required]],
@@ -28,7 +28,8 @@ export class DashboardComponent implements OnInit {
     {
     var evedate=this.saveForm.value.evedate;
     var evedesc=this.saveForm.value.evedesc;
-    this.dataservice.saveve(evedate,evedesc)
+    
+    this.dataservice.saveve(this.i++,evedate,evedesc)
     .subscribe((result:any)=>{
       if(result){
         alert(result.message);

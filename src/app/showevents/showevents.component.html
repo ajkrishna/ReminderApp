@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
 <div class="d-grid gap-2">
-    <button (click)="display()" class="btn btn-secondary" type="button">Display Events</button>
+    <button (click)="display()" class="btn btn1 btn-primary" type="button">Display Events</button>
   </div>
 <div *ngIf="isShown" class="show">
     <div class="table-responsive">
@@ -23,8 +23,8 @@
           <tr  *ngFor ="let res of evdate;let i=index;">
             <th scope="row">{{i+1}}</th>
             <td>{{res}}</td>
-            <td>{{evdesc[i]}}</td><td><button  class="btn btn-secondary" type="button">Edit</button>&nbsp;&nbsp;
-                <button  class="btn btn-secondary" type="button">Delete</button></td>
+            <td>{{evdesc[i]}}</td><td><button  class="btn btn2 btn-secondary" type="button">Edit</button>&nbsp;&nbsp;
+                <button  class="btn btn2 btn-secondary" type="button">Delete</button></td>
           </tr>
         </tbody>
       </table>
