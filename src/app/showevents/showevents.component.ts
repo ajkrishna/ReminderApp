@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ɵɵqueryRefresh } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../service/data.service';
 
@@ -8,33 +8,17 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./showevents.component.css']
 })
 export class ShoweventsComponent implements OnInit {
-   val:string | undefined ;
-   //i: number | undefined;
+   
    uID=this.dataservice.uID;
   evdate: any;
   evdesc: any;
+  e_id:any;
   constructor(private router:Router,private dataservice:DataService) { }
   isShown: boolean = false ; 
   ngOnInit(): void {
    
   }
  
-  /*display()
-  {
-    this.isShown = ! this.isShown;
-    //this.dataservice.display();
-    if(this.dataservice.currentID)
-    {
-      let users=this.dataservice.accountDetails;
-      let uID=this.dataservice.currentID;
-    let val=``;
-      let len=users[uID].events.length;
-     // console.log(len);console.log(users[uID].events);
-      for(let i=0;i<len;i++)
-        this.val+= users[uID]["events"][i]["evedate"] + ' ' + users[uID]["events"][i]["evedesc"]
-  }
-  }*/
-
   display()
   {
     this.isShown = ! this.isShown;
@@ -43,11 +27,9 @@ export class ShoweventsComponent implements OnInit {
     this.dataservice.display(this.uID)
     .subscribe((result:any)=>{
       if(result){
-       // alert(result.message);
-        //console.log(result.event_date);
-       // console.log(result.event_desc);
         this.evdate=result.event_date;
         this.evdesc=result.event_desc;
+        this.e_id=result.event_id;
       }
      },
      (result)=>{
@@ -55,5 +37,34 @@ export class ShoweventsComponent implements OnInit {
        
      })
   }
+}
+refresh(){
+  this.dataservice.display(this.uID)
+    .subscribe((result:any)=>{
+      if(result){
+        this.evdate=result.event_date;
+        this.evdesc=result.event_desc;
+        this.e_id=result.event_id;
+      }
+     },
+     (result)=>{
+       alert(result.error.message)
+       
+     })
+}
+
+removeItem(evedate:any,evedesc:any)
+{ 
+  this.dataservice.deleve(this.uID,evedate,evedesc)
+  .subscribe((result:any)=>{
+    if(result){
+     alert(result.message)
+     this.refresh();
+    }
+   },
+   (result)=>{
+     alert(result.error.message)
+     
+   }) 
 }
 }

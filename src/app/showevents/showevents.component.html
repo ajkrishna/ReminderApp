@@ -14,6 +14,7 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">Sl No.</th>
+            <th scope="col">EventID</th>
             <th scope="col">Date</th>
             <th scope="col">Event</th>
             <th scope="col"></th>
@@ -22,9 +23,10 @@
         <tbody>
           <tr  *ngFor ="let res of evdate;let i=index;">
             <th scope="row">{{i+1}}</th>
+            <td>{{e_id[i]}} </td>
             <td>{{res}}</td>
             <td>{{evdesc[i]}}</td><td><button  class="btn btn2 btn-secondary" type="button">Edit</button>&nbsp;&nbsp;
-                <button  class="btn btn2 btn-secondary" type="button">Delete</button></td>
+                <button (click)="removeItem(res,evdesc[i])"  class="btn btn2 btn-secondary" type="button">Delete</button></td>
           </tr>
         </tbody>
       </table>

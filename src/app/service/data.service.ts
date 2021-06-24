@@ -60,9 +60,18 @@ export class DataService {
     
 }
 display(uid:any)
-  { const data={
+  { 
+    const data={
     uid
   }
     return this.http.post("http://localhost:3000/display",data,options)
+  }
+
+  deleve(uid:any,edate:any,edesc:any)
+  {
+    const data={
+      uid,edate,edesc
+    }
+    return this.http.post("http://localhost:3000/deleve",data,options)
   }
 }
