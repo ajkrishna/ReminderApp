@@ -14,7 +14,7 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">Sl No.</th>
-            <th scope="col">EventID</th>
+            
             <th scope="col">Date</th>
             <th scope="col">Event</th>
             <th scope="col"></th>
@@ -23,12 +23,31 @@
         <tbody>
           <tr  *ngFor ="let res of evdate;let i=index;">
             <th scope="row">{{i+1}}</th>
-            <td>{{e_id[i]}} </td>
             <td>{{res}}</td>
-            <td>{{evdesc[i]}}</td><td><button  class="btn btn2 btn-secondary" type="button">Edit</button>&nbsp;&nbsp;
+            <td>{{evdesc[i]}}</td><td><button (click)="editEvent(res,evdesc[i])" class="btn btn2 btn-secondary" type="button">Edit</button>&nbsp;&nbsp;
                 <button (click)="removeItem(res,evdesc[i])"  class="btn btn2 btn-secondary" type="button">Delete</button></td>
           </tr>
         </tbody>
       </table>
     </div></div>
+</div>
+<div *ngIf="isEdit" class="edit">
+  <form [formGroup]="editForm" (ngSubmit)="editeve()">
+    <div class="form-group">
+        <input type="date" class="form-control" formControlName="evedate1" name="evedate1" placeholder="Date" 
+        value="" />
+        <div *ngIf="(this.editForm.get('evedate1')?.touched||this.editForm.get('evedate1')?.dirty)&&
+        this.editForm.get('evedate1')?.errors" class="error">Enter Date</div>
+    </div>
+        
+    <div class="form-group" >
+        <input type="text" class="form-control" formControlName="evedesc1" 
+        name="evedesc1" placeholder="Event" value="" />
+        <div *ngIf="(this.editForm.get('evedesc1')?.touched||this.editForm.get('evedesc1')?.dirty)&&
+        this.editForm.get('evedesc1')?.errors" class="error">Enter event</div>
+    </div>
+    <div class="form-group ">
+       <input type="submit" class="btnSubmit" value="Update" />
+    </div>
+  </form>
 </div></div>

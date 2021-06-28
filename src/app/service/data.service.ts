@@ -49,10 +49,10 @@ export class DataService {
     }
     return this.http.post("http://localhost:3000/login",data,options)
   }
-  saveve(i:any,edate:any,edesc:any)
+  saveve(edate:any,edesc:any)
   {
     const data={
-      i,
+      
       edate,
       edesc
     }
@@ -73,5 +73,13 @@ display(uid:any)
       uid,edate,edesc
     }
     return this.http.post("http://localhost:3000/deleve",data,options)
+  }
+
+  editeve(uid:any,editdate:any,editevent:any,edate:any,edesc:any)
+  {
+    const data={
+      uid,editdate,editevent,edate,edesc
+    }
+    return this.http.post("http://localhost:3000/editeve",data,options)
   }
 }
